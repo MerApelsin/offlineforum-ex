@@ -28,3 +28,9 @@ test('can switch user',() => {
   wrapper.find('select').simulate('change', {target: { value : 'Esmeralda'}});
   expect(wrapper.find('img').prop('src')).toEqual(esmeraldaimg);
 });
+
+test('change page state',() => {
+  let wrapper = shallow(<App/>);
+  wrapper.instance().changePage();
+  expect(wrapper.state('currentPage')).toEqual('bot');
+})

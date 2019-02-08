@@ -13,11 +13,14 @@ const comments = [
     },
   ];
 
-beforeAll(() => {
+beforeEach(() => {
     localStorage.setItem('posts',JSON.stringify(fakePosts.data))
     localStorage.setItem('comments',JSON.stringify(comments))
 })
-  
+
+afterEach(() => {
+    localStorage.clear();
+})
   
 test('renders a list with posts', () => {
     let wrapper = mount(<Posts currentPersona={'Zac'}/>);
@@ -27,33 +30,24 @@ test('renders a list with posts', () => {
 
 test('possibility to add post', () => {
     let wrapper = mount(<Posts currentPersona={'Zac'}/>);
-    //console.log(wrapper.html());
     expect(wrapper.find('input#title')).toHaveLength(1);
     expect(wrapper.find('textarea#content')).toHaveLength(1);
+
     const form = wrapper.find('div.flex.flex-wrap.mx-auto.pt-8').childAt(0);
     const title = {target: {name: 'title',value: 'titel'}};
     const content = {target: {name: 'content',value: 'Lite innehåll'}};
+    
     form.simulate('change',title);
     form.simulate('change',content);
     form.simulate('submit');
     wrapper.update();
-    //expect(wrapper.state('currentPage')).toBe('home')
-    expect(wrapper.find('article')).toHaveLength(4);
-    
-  
-    //expect(wrapper.find('div.flex > form.container.mx-auto.flex.flex-col.p-6')).toHaveLength(1);
+    expect(wrapper.find('article')).toHaveLength(4); 
 })
 
-describe('post handling', () => {
-    beforeAll(() => {
-        localStorage.clear();
-        localStorage.setItem('posts',JSON.stringify(fakePosts.data))
-    })
-
-    test('remove a post from the list',() => {
+test('remove a post from the list',() => {
         let wrapper = mount(<Posts currentPersona={'Zac'}/>);
         wrapper.find('Button').simulate('click');
         expect(wrapper.find('article')).toHaveLength(2);
     })
-});
+
 

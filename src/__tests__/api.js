@@ -49,5 +49,7 @@ test('can add and fetch comments and then remove it', () => {
   expect(api.fetchAllComments()).toHaveLength(0);
 });
 
-
-
+test('fetch persona',()=>{
+  let people = api.fetchPersonas();
+  expect(people).toHaveLength(0);
+})
