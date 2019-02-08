@@ -4,7 +4,6 @@ import Bot from '../components/Bot/Bot';
 import MessageForm from '../components/Bot/MessageForm';
 import TypingIndicator from '../components/Bot/TypingIndicator';
 import * as api from '../api';
-import { promised } from 'q';
 
 beforeEach(() => {
   localStorage.clear();
