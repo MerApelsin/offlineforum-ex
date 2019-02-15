@@ -8,6 +8,7 @@ import * as api from '../api';
 beforeEach(() => {
   localStorage.clear();
 })
+
 test('renders bot', () => {
     render(<Bot />);
   });

@@ -35,8 +35,6 @@ afterEach(() => {
 test('Renders comment', () => {
     const fakeOnClick = jest.fn();
     const wrapper = mount(<SinglePost {...zacPost[0]} currentPersona={'Esmeralda'} onClick={fakeOnClick} postId={zacPost[0].id}/>);
-    
-    
     expect(wrapper.find('.w-full.shadow.p-6.m-6.border.rounded.relative')).toHaveLength(1);
     expect(wrapper.find('div.py-2.border-b.relative')).toHaveLength(1);
     expect(wrapper.find('div.py-2.border-b.relative > p.text-grey-dark.mb-4').text()).toEqual(expect.stringContaining('Esmeralda'));
